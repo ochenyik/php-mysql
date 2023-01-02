@@ -1,0 +1,23 @@
+version: '3.4'
+
+
+services:
+  comdockerdevenvironments:
+    image: comdockerdevenvironments
+    links:
+      - db
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+    - "32000:80"
+    
+  db:
+    container_name: some-mysql
+    image: mysql:latest
+    ports:
+      - "32001:3306"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: my-secret-pw
+      
